@@ -6,6 +6,13 @@
     <label>name:
       <input [(ngModel)]="hero.name" placeholder="name">
     </label>
+    <br>
+    <h2>Abilities: </h2>
+    <label *ngFor="let ability of hero.abilities">
+      {{ability}}
+      <br>
+    </label>
+    <input [(ngModel)]="hero.name" >
   </div>
 
 </div>

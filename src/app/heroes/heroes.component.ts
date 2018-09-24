@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../Hero';
-import {heroes} from './OurHeroes';
+import {OurHeroes} from './OurHeroes';
 
 
 @Component({
@@ -9,13 +9,14 @@ import {heroes} from './OurHeroes';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes = heroes;
+  heroes = OurHeroes.heroes;
   selectedHero: Hero;
 
 
   constructor() { }
 
   ngOnInit() {
+    this.heroes[0].setAbilities(['Spider Webbing', 'Swinging', 'Super Strength', 'Wall Climbing', 'Wittiness']);
   }
 
   onSelect(hero: Hero): void {
