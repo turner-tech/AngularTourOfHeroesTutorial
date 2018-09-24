@@ -8,11 +8,17 @@
     </label>
     <br>
     <h2>Abilities: </h2>
-    <label *ngFor="let ability of hero.abilities">
-      {{ability}}
-      <br>
-    </label>
-    <input [(ngModel)]="hero.name" >
+    <ul>
+      <li *ngFor="let ability of hero.abilities">
+        {{ability}}
+        <br>
+      </li>
+    </ul>
+    <input type="text" id="abilitiesText" *ngIf="addAbility" [(ngModel)]="abilityStr" (input)="formatAbilities()">
+    <button id="editAbilitiesButton" text="Stuff" (click)="formatAbilities()">Edit Abilities</button>
+    <button (click)="clearAbilities()">Clear Abilities</button>
+    <button id="stopEditingAbilitiesButton" hidden (click)="stopEditingAbilities()" >Stop Editing</button>
+    <button> {{editAbilitiesInputVisibility ? 'hidden' : 'visible'}}</button>
   </div>
 
 </div>
