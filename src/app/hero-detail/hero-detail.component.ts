@@ -30,13 +30,14 @@ export class HeroDetailComponent implements OnInit {
     this.hero.abilities = this.abilityStr.split(',');
     this.addAbility = true;
     document.getElementById('stopEditingAbilitiesButton').hidden = false;
+    this.editAbilitiesInputVisibility = !this.editAbilitiesInputVisibility;
   }
   stopEditingAbilities() {
     this.addAbility = false;
     document.getElementById('abilitiesText').hidden = true;
     document.getElementById('stopEditingAbilitiesButton').hidden = true;
     this.editAbilitiesInputVisibility = !this.editAbilitiesInputVisibility;
-    alert(document.getElementById('abilitiesText'));
+    //alert(document.getElementById('abilitiesText'));
   }
 
 
