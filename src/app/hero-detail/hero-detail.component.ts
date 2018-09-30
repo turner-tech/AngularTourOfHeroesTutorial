@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../Hero';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,32 +15,37 @@ export class HeroDetailComponent implements OnInit {
   abilityStr = '';
   editAbilitiesInputVisibility  = false;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
-    this.stopEditingAbilities();
+    this.getHero();
   }
+
+  getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id).subscribe(hero => this.hero = hero);
+  }
+
   clearAbilities() {
     this.hero.setAbilities([]);
     this.abilityStr = '';
   }
   formatAbilities() {
     document.getElementById('editAbilitiesButton').innerText = 'Update Abilities';
-
     if (!this.addAbility) {
+      document.getElementById('editAbilitiesButton').innerText = 'Stop Editing Abilities';
       this.abilityStr = this.hero.abilities.join();
     }
-    this.hero.abilities = this.abilityStr.split(',');
-    this.addAbility = true;
-    document.getElementById('stopEditingAbilitiesButton').hidden = false;
+   this.hero.abilities = this.abilityStr.split(',');
+    this.addAbility = !this.addAbility;
     this.editAbilitiesInputVisibility = !this.editAbilitiesInputVisibility;
   }
-  stopEditingAbilities() {
-    this.addAbility = false;
-    document.getElementById('abilitiesText').hidden = true;
-    document.getElementById('stopEditingAbilitiesButton').hidden = true;
-    this.editAbilitiesInputVisibility = !this.editAbilitiesInputVisibility;
-    //alert(document.getElementById('abilitiesText'));
+
+  goBack(): void {
+    this.location.back();
   }
 
 

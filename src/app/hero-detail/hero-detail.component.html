@@ -15,10 +15,11 @@
       </li>
     </ul>
     <input type="text" id="abilitiesText" *ngIf="addAbility" [(ngModel)]="abilityStr" (input)="formatAbilities()">
-    <button id="editAbilitiesButton" text="Stuff" (click)="formatAbilities()">Edit Abilities</button>
+    <button id="editAbilitiesButton" (click)="formatAbilities()">Edit Abilities</button>
     <button (click)="clearAbilities()">Clear Abilities</button>
-    <button id="stopEditingAbilitiesButton" hidden (click)="stopEditingAbilities()" >Stop Editing</button>
-    <button> {{editAbilitiesInputVisibility ? 'visible' : 'hidden'}}</button>
+    <br>
+    <br>
+    <button (click)="goBack()">Go Back</button>
   </div>
 
 </div>
